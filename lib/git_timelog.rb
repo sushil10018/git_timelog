@@ -14,6 +14,13 @@ module GitTimelog
   def json_format
     data = git_timelog
     gf = GitFormatter.new(data)
-    gf.json_formatted
+    gf.json_formatted.to_json
+  end
+
+  # list_style = 'ordered' || 'unordered'
+  def to_clipboard(list_style = 'ordered')
+    data = git_timelog
+    gf = GitFormatter.new(data)
+    `echo "#{gf.title_list(list_style)}" | pbcopy`
   end
 end

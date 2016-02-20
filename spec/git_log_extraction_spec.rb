@@ -23,4 +23,15 @@ describe GitTimelog do
       expect(formatted_json).to eql(formatted_json) # LOL
     end
   end
+
+  describe '#to_clipboard' do
+    it "should copy ordered list to clipboard" do
+      to_clipboard
+      puts "Ordered List copied to clipboard. Paste to test."
+    end
+    it "should copy unordered list to clipboard" do
+      to_clipboard('unordered')
+      puts "Unordered List copied to clipboard"
+    end
+  end
 end

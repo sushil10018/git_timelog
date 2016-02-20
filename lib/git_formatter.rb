@@ -32,10 +32,17 @@ class GitFormatter
       commit_hash[:start_time] = start_time.to_s
       hash_array.push(commit_hash)
     end
-    hash_array.to_json
+    hash_array
   end
 
-  def to_clipboard
-    
+  # list_style = 'ordered' || 'unordered'
+  def title_list(list_style)
+    hash_array = json_formatted
+    commit_titles = hash_array.map{ |commit| commit[:title] }
+    if list_style == 'unordered'
+      commit_titles.join("\n")
+    else
+      commit_titles.each_with_index.map { |title,number| "#{number + 1}. #{title}" }.join("\n")
+    end
   end
 end
