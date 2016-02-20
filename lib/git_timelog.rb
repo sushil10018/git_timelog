@@ -1,5 +1,7 @@
 require "git_timelog/version"
 
 module GitTimelog
-  # Your code goes here...
+  def git_timelog
+    "Hello"
+  end
 end
