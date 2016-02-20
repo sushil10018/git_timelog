@@ -6,10 +6,10 @@ require 'git_timelog/version'
 Gem::Specification.new do |spec|
   spec.name          = "git_timelog"
   spec.version       = GitTimelog::VERSION
-  spec.authors       = ["Sushil Shrestha"]
-  spec.email         = ["sushil10018@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.authors       = ["Sushil Shrestha", "Ganesh Kunwar", "Surya Siwakoti"]
+  spec.email         = ["sushil@jyaasa.com", "ganesh@jyaasa.com", "surya@jyaasa.com"]
+  spec.summary       = "A tool to extract daily update from GIT commits."
+  spec.description   = "The tool can return json of the tasks done along with start and end time. As well as simply copy the list of commits done as plain-text list which can be ordered or unordered."
   spec.homepage      = ""
   spec.license       = "MIT"
 
@@ -20,4 +20,6 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.7"
   spec.add_development_dependency "rake", "~> 10.0"
+  spec.add_development_dependency "rspec", "~> 3.4.0"
+  spec.add_development_dependency "pry", "~> 0.10.3"
 end
