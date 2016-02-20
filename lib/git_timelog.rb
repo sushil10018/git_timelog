@@ -2,8 +2,9 @@ require "git_timelog/version"
 require "git_formatter"
 
 module GitTimelog
-  def git_timelog
-    `git log --pretty=format:"git__title:%sgit__description:%bgit__date:%cd" --author="#{current_author}" --since={6am} --reverse`
+  # TODO: make the time changeable
+  def git_timelog(from_time = '6am')
+    `git log --pretty=format:"git__title:%sgit__description:%bgit__date:%cd" --author="#{current_author}" --since={#{from_time}} --reverse`
   end
 
   def current_author
