@@ -1,4 +1,5 @@
-require "pry"
+require "date"
+
 class GitFormatter
   def initialize(data)
     @data = data

@@ -1,5 +1,6 @@
 require "git_timelog/version"
 require "git_formatter"
+require "json"
 
 module GitTimelog
   # TODO: make the time changeable

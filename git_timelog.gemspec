@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["sushil@jyaasa.com", "ganesh@jyaasa.com", "surya@jyaasa.com"]
   spec.summary       = "A tool to extract daily update from GIT commits."
   spec.description   = "The tool can return json of the tasks done along with start and end time. As well as simply copy the list of commits done as plain-text list which can be ordered or unordered."
-  spec.homepage      = ""
+  spec.homepage      = "http://jyaasa.com/git_timelog"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
@@ -20,6 +20,5 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.7"
   spec.add_development_dependency "rake", "~> 10.0"
-  spec.add_development_dependency "rspec", "~> 3.4.0"
-  spec.add_development_dependency "pry", "~> 0.10.3"
+  spec.add_development_dependency "rspec", "~> 3.4"
 end
