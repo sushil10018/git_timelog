@@ -1,4 +1,3 @@
-require "json"
 require "pry"
 class GitFormatter
   def initialize(data)
