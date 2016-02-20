@@ -6,7 +6,7 @@ class GitFormatter
   end
 
   def json_formatted
-    binding.pry
+    binding.pry 
   end
 
   def to_clipboard
