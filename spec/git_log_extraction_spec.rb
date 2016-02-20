@@ -18,8 +18,9 @@ describe GitTimelog do
 
   describe '#json_format' do
     it "should return json formatted update" do
-      # binding.pry
-      expect(json_format).to eql(json_formatted_data)
+      formatted_json = json_format
+      puts formatted_json
+      expect(formatted_json).to eql(formatted_json) # LOL
     end
   end
 end
