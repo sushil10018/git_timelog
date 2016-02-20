@@ -3,7 +3,7 @@ require "git_formatter"
 
 module GitTimelog
   def git_timelog
-    `git log --pretty=format:"%s | %b | %cd" --author="#{current_author}" --since={6am} --reverse`
+    `git log --pretty=format:"git__title:%sgit__description:%bgit__date:%cd" --author="#{current_author}" --since={6am} --reverse`
   end
 
   def current_author
