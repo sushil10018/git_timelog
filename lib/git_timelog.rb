@@ -5,7 +5,7 @@ require "json"
 module GitTimelog
   # TODO: make the time changeable
   def git_timelog(from_time = '6am')
-    `git log --pretty=format:"git__title:%sgit__description:%bgit__date:%cd" --author="#{current_author}" --since={#{from_time}} --reverse`
+    `git log --pretty=format:"git__title:%sgit__description:%bgit__date:%cd" --author="#{current_author}" --since={#{from_time}} --reverse --all`
   end
 
   def current_author
