@@ -47,6 +47,10 @@ module GitTimelog
   def to_clipboard(list_style = 'ordered')
     data = git_timelog
     gf = GitFormatter.new(data)
-    `echo "#{gf.title_list(list_style)}"`
+    if `uname` == "Darwin\n"
+      `echo "#{gf.title_list(list_style)}" | pbcopy`
+    elsif `uname` == "Linux\n"
+      `echo "#{gf.title_list(list_style)}" | xclip -selection clipboard`
+    end
   end
 end
