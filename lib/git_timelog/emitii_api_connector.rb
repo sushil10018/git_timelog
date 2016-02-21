@@ -10,7 +10,7 @@ class EmitiiApiConnector
   end
 
   def update_time_tracks(params)
-    HTTParty.post("http://#{@emitii_subdomain}.emitii.com/timetracks?access_token=#{@access_token}&project=#{@project}&format=json",
+    HTTParty.post("http://#{@emitii_subdomain}.emitii.com/timetracks?access_token=#{@access_token}&project=#{@project_name}&format=json",
       { 
         :body => params.to_json,
         :basic_auth => { :username => api_key },
