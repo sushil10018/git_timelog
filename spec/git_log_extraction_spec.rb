@@ -16,6 +16,13 @@ describe GitTimelog do
     end
   end
 
+  describe '#user_option' do
+    it "should accpet user option" do
+      user_option
+      binding.pry
+    end
+  end
+
   describe '#json_format' do
     it "should return json formatted update" do
       formatted_json = json_format
