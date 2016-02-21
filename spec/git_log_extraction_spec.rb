@@ -16,10 +16,9 @@ describe GitTimelog do
     end
   end
 
-  describe '#user_option' do
+  describe '#user_input' do
     it "should accpet user option" do
-      user_option
-      binding.pry
+      user_input
     end
   end
 

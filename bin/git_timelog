@@ -2,6 +2,8 @@
 require 'optparse'
 require 'git_timelog'
 include GitTimelog
-puts json_format
-user_option	
+user_input
+json_format
 
+require "pry"
+require 'optparse'
