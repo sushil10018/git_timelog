@@ -5,7 +5,7 @@ describe GitTimelog do
   # TODO: Refactor
   describe '#git_timelog' do
     it "should extract git commits" do
-      expect(git_timelog).to eql(`git log --pretty=format:"git__title:%sgit__description:%bgit__date:%cd" --author="#{current_author}" --since={6am} --reverse`)
+      expect(git_timelog).to eql(`git log --pretty=format:"git__title:%sgit__description:%bgit__date:%cd" --author="#{current_author}" --since='6am'} --reverse --all`)
     end
   end
 
