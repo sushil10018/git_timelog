@@ -9,17 +9,21 @@ module GitTimelog
   def user_input
     options = {}
     option_parse = OptionParser.new do |option|
-        option.banner = "Usage: opt_parser COMMAND [OPTIONS]"
-        option.on("-s n", "--since=n", "since") do |v|
+        option.banner = "Hint: options -s 3:30"
+          option.on("-f=n","--format=n","help") do |b| 
+            format_option = b
+            to_clipboard(format_option)
+          end   
+        option.on("-s=n", "--since=n") do |v|
             options[:since] = v
-            git_timelog(options[:since])
-          option.on("-h","--help","help") do 
+            git_timelog(options[:since]) 
+        end
+        option.on("-h","--help","help") do 
             puts opt_parser
-          end    
         end
     end
     begin option_parse.parse! ARGV
-    rescue OptionParser::ParseError => e
+    rescue OptionParser::InvalidOption, OptionParser::MissingArgument , OptionParser::ParseError => e
       puts e 
       puts "Type -h or --help for help"
     end   
@@ -36,7 +40,7 @@ module GitTimelog
   def json_format
     data = git_timelog
     gf = GitFormatter.new(data)
-    gf.json_formatted.to_json
+    puts gf.json_formatted.to_json
   end
 
   # list_style = 'ordered' || 'unordered'
