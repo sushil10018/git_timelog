@@ -1,9 +1,4 @@
 #!/usr/bin/env ruby
-require 'optparse'
 require 'git_timelog'
 include GitTimelog
 user_input
-json_format
-
-require "pry"
-require 'optparse'
