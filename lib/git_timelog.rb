@@ -69,7 +69,8 @@ module GitTimelog
     if `uname` == "Darwin\n"
       `echo "#{gf.title_list(list_style)}" | pbcopy`
     elsif `uname` == "Linux\n"
-      `echo "#{gf.title_list(list_style)}" | xclip -selection clipboard`
+      puts gf.title_list(list_style)
+       `echo "#{gf.title_list(list_style)}" | xsel --clipboard --input`
     end
   end
 
