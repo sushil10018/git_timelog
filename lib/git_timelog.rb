@@ -1,4 +1,5 @@
 require "git_timelog/version"
+require "git_timelog/emitii_api_connector"
 require "git_formatter"
 require "json"
 require "pry"
