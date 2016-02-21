@@ -4,6 +4,7 @@ require "git_formatter"
 require "json"
 require 'optparse'
 require 'ostruct'
+require 'pry'
 
 module GitTimelog
   # TODO: make the time changeable
@@ -13,6 +14,7 @@ module GitTimelog
     options.format = "unordered"
     options.since = "6am"
     options.emitii = false
+    options.install = false
     option_parse = OptionParser.new do |option|
       option.banner = "Hint: git_timelog -s 6am -f json"
       option.on("-f","--format=FORMAT","which format do you want to get returned") do |format|
@@ -24,6 +26,9 @@ module GitTimelog
       option.on("-e", "--emitii", "update time log in emitii?") do |since|
         options.emitii = true
       end
+      option.on("-i", "--install", "configure your project for emitii with access_tokens") do |since|
+        options.install = true
+      end
       option.on("-h","--help","help") do 
         puts option_parse
       end
@@ -31,6 +36,9 @@ module GitTimelog
     begin
       option_parse.parse! ARGV
       if options.emitii == true
+        if options.install == true
+          set_project_setting
+        end
         to_emitii(options.since)
       else
         if options.format == "json"
@@ -74,13 +82,13 @@ module GitTimelog
   end
 
   def to_emitii(from_time = '6am')
-    obj = EmitiiApiConnector.new
-    puts "Your Access Token Please:"
-    obj.access_token = gets.chomp
-    puts "Your Subdomain Please:"
-    obj.emitii_subdomain = gets.chomp
-    puts "Your Project Name Please:"
-    obj.project_name = gets.chomp
+    require 'yaml'
+    unless File.exist?('setting.yml')
+      puts "Configure your project for emitii with access_tokens"
+      set_project_setting
+    end    
+    thing = YAML.load_file('setting.yml')
+    obj = EmitiiApiConnector.new(thing["access_token"], thing["project_name"], thing["emitii_subdomain"])
     data = git_timelog(from_time)
     gf = GitFormatter.new(data)
     response = obj.update_time_tracks(gf.json_formatted)
@@ -88,6 +96,21 @@ module GitTimelog
       puts "Emitii Successfully Updated."
     else
       puts "Something went wrong. Please try again."
+    end
+  end
+
+  def set_project_setting
+    require 'yaml' # Built in, no gem required
+    File.new("setting.yml", "w")
+    d = Hash.new
+    puts "Your Access Token Please:"
+    d['access_token']  = gets.chomp
+    puts "Your Subdomain Please:"
+    d['emitii_subdomain'] = gets.chomp
+    puts "Your Project Name Please:"
+    d['project_name'] = gets.chomp
+    File.open("setting.yml","w") do |file|
+      file.write d.to_yaml
     end
   end
 end
