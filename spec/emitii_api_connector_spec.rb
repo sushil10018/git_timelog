@@ -9,7 +9,7 @@ describe EmitiiApiConnector do
               :start_time=>"2016-02-20T13:22:55+00:00"}]
       obj = EmitiiApiConnector.new
       response = obj.update_time_tracks(params)
-      binding.pry
+      expect(response["status"]).to eql(200)
     end
   end
 end
